@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .book-wrapper {
+        max-width: 1065px;
+        margin: 0 auto;
+        padding: 21px;
+        background-color: #1e2a38;
+        border-radius: 16px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .book-main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 34px;
+        justify-content: space-between;
+    }
+
+    .book-image-left {
+        flex: 0 0 320px;
+        max-width: 320px;
+    }
+
+    .book-image-left img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
+
+    .book-info-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .book-info-right h2 {
+        margin-top: 0;
+        font-size: 30px;
+        color: #f4b400;
+    }
+
+    .book-info-right p {
+        font-size: 15.5px;
+        margin: 0;
+    }
+
+    .book-audio {
+        display: flex;
+        justify-content: center;
+        margin-top: 8px;
+    }
+
+    .book-audio audio {
+        width: 100%;
+        max-width: 540px;
+    }
+
+    .back-link {
+        display: block;
+        margin: 24px auto;
+        text-align: center;
+        font-size: 15.5px;
+        color: #f4b400;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="book-wrapper">
+    <div class="book-main">
+        <div class="book-image-left">
+            <img src="{% if book.image_data %}/image/{{ book.id }}{% else %}/static/default.jpg{% endif %}" alt="Обкладинка">
+        </div>
+        <div class="book-info-right">
+            <h2>{{ book.title }}</h2>
+            <p><strong>Автор:</strong> {{ book.author }}</p>
+            <p><strong>Опис:</strong> {{ book.description }}</p>
+            <p><strong>Додано користувачем:</strong> {{ book.user }}</p>
+        </div>
+    </div>
+
+    <div class="book-audio">
+        <audio controls>
+            <source src="/play/{{ book.id }}" type="audio/mpeg">
+            Ваш браузер не підтримує аудіо.
+        </audio>
+    </div>
+
+    <a class="back-link" href="/lib">← Назад</a>
+</div>
+{% endblock %}

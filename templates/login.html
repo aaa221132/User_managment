@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-container">
+  <h2>Вхід</h2>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  {% if invalid %}
+    <p class="repeat">{{ invalid }}</p>
+  {% endif %}
+
+  {% if success %}
+    <p class="continue">{{ success }}</p>
+    <script>
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
+    </script>
+  {% else %}
+    <form method="post">
+      <input type="text" name="username" placeholder="Ім'я користувача" required><br>
+      <input type="password" name="password" placeholder="Пароль" required><br><br>
+      <button type="submit" style="padding: 10px 20px; width: 100%; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Увійти
+      </button>
+    </form>
+  {% endif %}
+</div>
+
+<style>
+  .form-container {
+    background-color: #1e2a38;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .continue {
+    color: rgb(0, 255, 0);
+  }
+
+  .repeat {
+    color: rgb(255, 0, 0);
+  }
+</style>
+
+{% endblock %}
