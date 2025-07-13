@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-container">
+  <h2>Реєстрація</h2>
+
+  {% if repeat %}
+    <p class="repeat">{{ repeat }}</p>
+  {% endif %}
+
+  {% if continue %}
+    <p class="continue">{{ continue }}</p>
+    <script>
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1000);
+    </script>
+  {% else %}
+    <form method="post">
+      <input type="text" name="username" placeholder="Ім'я користувача" required><br>
+      <input type="password" name="password" placeholder="Пароль" required><br><br>
+      <button type="submit" style="padding: 10px 20px; width: 100%; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Зареєструватися
+      </button>
+    </form>
+  {% endif %}
+</div>
+
+<style>
+  .form-container {
+    background-color: #1e2a38;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .continue {
+    color: rgb(0, 255, 0);
+  }
+
+  .repeat {
+    color: rgb(255, 0, 0);
+  }
+</style>
+
+{% endblock %}

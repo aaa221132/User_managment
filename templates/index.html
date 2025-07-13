@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 style="text-align: center;">Виберіть книгу, яку хочете видалити</h1>
+
+<div class="book-grid">
+  {% for book in books %}
+    <div class="book-card">
+      <a href="/book/{{ book.id }}">
+        <img src="{% if book.image_data %}/image/{{ book.id }}{% else %}/static/default.jpg{% endif %}" alt="Обкладинка">
+      </a>
+      <div class="book-info">
+        <div class="book-title">
+          <a href="/book/{{ book.id }}">{{ book.title }}</a>
+        </div>
+        <div class="book-author">
+          <span>{{ book.author }}</span>
+        </div>
+        <form action="/delete/{{ book.id }}" method="post" onsubmit="return confirm('Точно видалити цю книгу?')">
+          <button type="submit" class="delete-button">🗑️ Видалити</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* 🔼 увеличенный отступ между карточками */
+    justify-content: center;
+    padding: 40px 20px; /* 🔼 отступы по краям */
+  }
+
+  .book-card {
+    width: 220px;
+    background-color: #1e2a38;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease;
+  }
+
+  .book-card:hover {
+    transform: scale(1.03);
+  }
+
+  .book-card img {
+    width: 100%;
+    height: 302px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .book-title a {
+    display: block;
+    font-weight: bold;
+    color: #00bfff;
+    margin-bottom: 6px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .book-author {
+    font-size: 15px;
+    color: #ccc;
+    margin-bottom: 10px;
+  }
+
+  .delete-button {
+    padding: 6px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .delete-button:hover {
+    background-color: #ff0000;
+  }
+
+  .book-title a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+{% endblock %}

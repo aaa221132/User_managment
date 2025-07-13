@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Аудіокниги</title>
+<style>
+  div1{
+      padding:5px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0f1b2a;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 60px; 
+  }
+
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .book-card {
+    background-color: #1e2a38;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 220px;
+    transition: transform 0.2s;
+  }
+
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .book-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .book-info {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .book-info a {
+    color: #00bfff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .book-info span {
+    display: block;
+    font-size: 14px;
+    color: #ddd;
+  }
+
+
+
+  nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+  }
+  nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: bold;
+  }
+
+  nav a:hover {
+      text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/lib">Бібліотека книг</a></li>
+            <li><a href="/add">Додати нову книгу</a></li>
+            <li><a href="/del">Видалити книгу</a></li>
+            <li style="float:right"><a href="/login">Увійти</a></li>
+            <li style="float:right"><a href="/register">Регестрація</a></li>
+        </ul>
+    </nav>
+        
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
